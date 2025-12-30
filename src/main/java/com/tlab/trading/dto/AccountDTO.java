@@ -7,7 +7,7 @@ import lombok.Data;
 ---------------------------------- */
 @Data
 public class AccountDTO {
-	// private Users users;
+	private UsersDTO users;
 	private Long 	balance; 	// 포인트 잔고
 	private String 	updated_at; // 수정일시
 }

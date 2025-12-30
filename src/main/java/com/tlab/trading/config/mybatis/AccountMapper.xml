@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Account">
+
+	<!-- selectByUserId, updateBalance -->
+
+	<!-- 유저 어카운트 조회 -->
+	<select id="selectByUserId" parameterType="int" resultType="Account">
+		select account_id, user_id, balance, updated_at from account where user_id=#{user_id}
+	</select>
+	
+	<!-- 유저 포인트 차감 -->
+	<update id="decreaseBalance">
+		UPDATE account  
+		SET balance = balance - #{amount}, 
+			updated_at = NOW()
+		WHERE user_id = #{userId}
+	</update>
+	
+	<!-- 유저 포인트 증가 -->
+	<update id="increaseBalance">
+	    UPDATE account
+	    SET balance = balance + #{amount},
+	        updated_at = NOW()
+	    WHERE user_id = #{userId}
+	</update>
+
+	
+</mapper>

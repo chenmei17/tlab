@@ -5,12 +5,13 @@
 	<typeAliases>
 		<typeAlias type="com.tlab.trading.dto.AccountDTO" 		alias = "Account" />
 		<typeAlias type="com.tlab.trading.dto.PositionDTO" 		alias = "Position" />
-	</typeAliases>
+		
+	</typeAliases>		
 		
 		
+	<mappers>
+		<mapper resource="com/tlab/config/mybatis/AccountMapper.xml"/>
 		
-  <mappers>
-    <mapper resource="com/tlab/config/mybatis/AccountMapper.xml"/>
-  </mappers>
-  
+	</mappers>
+ 
 </configuration>
