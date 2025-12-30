@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Account">
+
+<!-- selectByUserId, updateBalance -->
+
+
+	<!-- 어카운트 조회 
+		레코드를 insert 하자마자 방금 들어간 pk값을 바로 반환받아야할 업무가 빈번하다. 
+		Mybatis 내에서 insert 태그 내에서 지원하는 방법을 제공한다. 
+	-->
+	<select id="selectByUserId" parameterType="int" resultType="Account">
+		select * from account where user_id=#{user_id}
+	</select>
+	
+	<!-- Mybatis 에 의해 DTO 와 컬럼명이 일치하지 않을경우 자동매핑이 ... 
+		 이시점부터는 개발자가 나서 수동으로 매핑가능. 
+	-->
+	<!-- <resultMap id="productMap" type="Product">
+		<id column="product_id" 		property="product_id" />
+		<result column="product_name" 	property="product_name"/>
+		<result column="brand" 			property="brand"/>
+		<result column="price" 			property="price"/>
+		<result column="discount" 		property="discount"/>
+		<result column="introduce" 		property="introduce"/>
+		<result column="detail" 		property="detail"/>
+		
+      
+		다른 테이블의 레코드 1건을 가져오기 ... 
+		assoscation : 부모의 레코드를 가져오는 기능. 자식과 부모관계인 1:1 관계에서 사용.
+		
+		<association column="subcategory_id"  property="subCategory" 
+		             javaType="SubCategory" select="SubCategory.select" />
+		      
+		다른 테이블의 레코드 여러건을 가져오기 ... 
+		collection : 자식테이블의 자신을 부모로 두고있는 여러건의 레코드를 가져올수있다. 
+		
+		<collection column="product_id" select="ProductImg.selectByProductId" 
+					property="productImgList" 
+					javaType="java.util.List"
+					ofType="ProductImg" />
+					
+		colorList
+		select color_id,color_name from color WHERE color_id in (select color_id from product_color where product_id =64);
+		
+		<collection column="product_id" 
+					select="Color.selectByProductId" 
+					property="colorList" 
+					javaType="java.util.List"
+					ofType="Color" />
+					
+		sizeList
+		<collection column="product_id" 
+					select="Size.selectByProductId" 
+					property="sizeList" 
+					javaType="java.util.List"
+					ofType="Size" />
+	</resultMap>
+	
+	공통쿼리
+	<sql id="sql_select">
+		select product_id,product_name,brand,price,discount,introduce,detail,subcategory_id 
+		from product
+	</sql>
+	
+	모든상품 가져오기
+	<select id="selectAll" resultMap="productMap">
+		<include refid="sql_select" />
+	</select>
+	 -->
+	
+</mapper>
