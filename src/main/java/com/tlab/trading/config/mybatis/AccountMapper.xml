@@ -6,7 +6,9 @@
 
 	<!-- 유저 어카운트 조회 -->
 	<select id="selectByUserId" parameterType="int" resultType="Account">
-		select account_id, user_id, balance, updated_at from account where user_id=#{user_id}
+		SELECT account_id, user_id, balance, updated_at 
+		FROM account 
+		WHERE user_id=#{user_id}
 	</select>
 	
 	<!-- 유저 포인트 차감 -->
