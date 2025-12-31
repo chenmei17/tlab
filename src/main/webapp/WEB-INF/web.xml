@@ -17,7 +17,7 @@
 		<!-- shop용 스프링MVC 설정 클래스 지정 -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>com.tlab.trading.config.spring.RootConfig</param-value>
+			<param-value>com.tlab.trading.config.spring.WebConfig</param-value>
 		</init-param>
 	</servlet>
 

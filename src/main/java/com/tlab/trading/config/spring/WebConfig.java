@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configurable
 @EnableWebMvc
 @ComponentScan(basePackages= {"com.tlab.trading.controller"})
-public class RootConfig {
+public class WebConfig {
 
 }
 
