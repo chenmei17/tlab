@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases>
+		<typeAlias
+			type="com.tlab.trading.admin.dto.row.ActionCodeDTO"
+			alias="ActionCodeDTO" />
+		<typeAlias
+			type="com.tlab.trading.admin.dto.row.AlertActionDTO"
+			alias="AlertActionDTO" />
+	</typeAliases>
+
+
+	<mappers>
+		<mapper resource="mybatis/admin/AlertActionMapper.xml" />
+		<mapper resource="mybatis/admin/DashboardMapper.xml" />
+		<!-- 앞으로 매퍼 추가할 때 여기 한 줄씩 추가 -->
+	</mappers>
+
+
+</configuration>
