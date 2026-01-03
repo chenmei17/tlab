@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdminUser">
+
+	<select id="selectAdminUsers" resultType="AdminUserRowDTO" parameterType="AdminUserPageRequestDTO">
+		SELECT u.user_id as user_id,name,affiliation,role_name,auth_provider_name,u.updated_at as updated_at ,COALESCE(t.pending_cnt, 0) AS pending_cnt,balance 
+		FROM users u
+		JOIN auth_provider p ON u.auth_provider_id = p.auth_provider_id
+		JOIN ROLE r ON r.role_id = u.role_id
+		LEFT JOIN (SELECT user_id,
+		COUNT(CASE WHEN status_code IN ('NEW','REOPEN')
+		THEN 1 END) AS
+		pending_cnt
+		FROM alert GROUP BY 1) t ON t.user_id = u.user_id
+		JOIN
+		account a ON a.user_id = u.user_id
+		ORDER BY u.updated_at DESC
+		LIMIT #{size} OFFSET #{offset}
+	</select>
+
+</mapper>

@@ -3,14 +3,33 @@
 <mapper namespace="Dashboard">
 
 	<select id="selectTodayAlertCount" resultType="int">
-		SELECT count(*) today_alert_cnt FROM alert WHERE created_at >= CURDATE()
+		SELECT count(*)
+		<!-- today_alert_cnt FROM alert WHERE created_at >= CURDATE() -->
 	</select>
 
 	<select id="selectTodayTradeCount" resultType="int">
-		SELECT count(*) today_tr_cnt
+		SELECT count(*)
 		FROM trade
-		WHERE created_at >= CURDATE()
+		<!-- WHERE created_at >= CURDATE() -->
 	</select>
-	
+
+	<select id="selectAssetTradeStats" resultType="AssetTradeStatDTO">
+		WITH stock_cnt AS
+		(SELECT s.stock_code , sum(price*quantity) AS stock_sum
+		FROM trade t JOIN stock s ON s.stock_id = t.stock_id
+		<!-- WHERE t.created_at >= CURDATE() -->
+		GROUP BY s.stock_code),
+		tot_cnt AS
+		(SELECT sum(price*quantity) AS tot_sum
+		FROM trade
+		<!-- WHERE created_at >= CURDATE() -->
+		)
+		SELECT stock_code
+		, COALESCE(ROUND(100.0 * s.stock_sum / NULLIF(t.tot_sum, 0), 2), 0) AS ratio
+		FROM stock_cnt s CROSS JOIN tot_cnt t
+		ORDER BY stock_sum DESC
+		LIMIT 10
+	</select>
+
 
 </mapper>

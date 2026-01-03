@@ -91,12 +91,19 @@
     <version>2.9.10</version>
   </dependency>
 
-
   <dependency>
     <groupId>commons-fileupload</groupId>
     <artifactId>commons-fileupload</artifactId>
     <version>1.4</version>
   </dependency>
+  
+  <!-- Java 8 날짜/시간(LocalDateTime 등) JSON 직렬화 지원 (jackson-databind 2.9.10과 버전 통일) -->
+	<dependency>
+	  <groupId>com.fasterxml.jackson.datatype</groupId>
+	  <artifactId>jackson-datatype-jsr310</artifactId>
+	  <version>2.9.10</version>
+	</dependency>
+
 </dependencies>
 
 </project>
